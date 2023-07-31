@@ -1,4 +1,4 @@
-"""IO examples.
+cd ../ g"""IO examples.
 
 Using file IO, from the docs:
     "The first argument is a string containing the filename. The second
