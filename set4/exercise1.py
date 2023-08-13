@@ -77,9 +77,15 @@ def wordy_pyramid():
     ]
     TIP: to add an argument to a URL, use: ?argName=argVal e.g. &wordlength=
     """
-    pyramid = []
+    for length in range(3, 21, 2):
+        url = f"https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?wordlength={length}"
+        response = requests.get(url)
 
-    return pyramid
+        if response.status_code == 200:
+            word = response.text.strip()  # Get the word from the response
+            pyramid.append(word)
+        else:
+            print(f"Failed to retrieve word of length {length}")
 
 
 def pokedex(low=1, high=5):
@@ -103,6 +109,27 @@ def pokedex(low=1, high=5):
         the_json = json.loads(r.text)
 
     return {"name": None, "weight": None, "height": None}
+
+
+import requests
+import json
+
+tallest_pokemon = {"name": None, "weight": None, "height": None}
+max_height = 0
+for id in range(low, high + 1):
+    url = f"https://pokeapi.co/api/v2/pokemon/{id}"
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        pokemon_data = json.loads(response.text)
+
+        height = pokemon_data["height"]
+        if height > max_height:
+            max_height = height
+            tallest_pokemon["name"] = pokemon_data["name"]
+            tallest_pokemon["weight"] = pokemon_data["weight"]
+            tallest_pokemon["height"] = height
+tallest_pokemon
 
 
 def diarist():

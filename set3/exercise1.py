@@ -43,14 +43,15 @@ def stubborn_asker(low, high):
 
     Look up the docs for a function called "input"
     """
-
-    user_input = int(input(f"Enter a number between {low} and {high}: "))
-    if low <= user_input <= high:
-        return user_input
-    else:
-        print(f"Number should be between {low} and {high}. Please try again.")
-    except ValueError:
-    print("Invalid input. Please enter a valid number.")
+    while True:
+        try:
+            user_input = int(input(f"Enter a number between {low} and {high}: "))
+            if low <= user_input <= high:
+                return user_input
+            else:
+                print(f"Number should be between {low} and {high}. Please try again.")
+        except ValueError:
+            print("Invalid input. Please enter a valid number.")
 
 
 def not_number_rejector(message):
@@ -61,10 +62,15 @@ def not_number_rejector(message):
     When you do get a number, return it.
     """
 
-    number = float(message)
-    return number
+
+while True:
+    try:
+        message = "heres a number"
+        number = float(input(message))
     except ValueError:
-    print("Invalid input. Please enter a valid number.")
+        print("Invalid input. Please enter a valid number.")
+
+# Example usage:
 
 
 def super_asker(low, high):
@@ -73,14 +79,18 @@ def super_asker(low, high):
     Combine what you learnt from stubborn_asker and not_number_rejector
     to make a function that does it all!
     """
-    number = float(user_input)
-    if low <= number <= high:
-        return number
-    else:
-        print(f"Number should be between {low} and {high}. Please try again.")
-    except ValueError:
-    print("Invalid input. Please enter a valid number.")
 
+
+while True:
+    try:
+        user_input = input(f"Please enter a number between {low} and {high}: ")
+        number = float(user_input)
+        if low <= number <= high:
+            number
+        else:
+            print(f"Number should be between {low} and {high}. Please try again.")
+    except ValueError:
+        print("Invalid input. Please enter a valid number.")
 
 if __name__ == "__main__":
     # this section does a quick test on your results and prints them nicely.
